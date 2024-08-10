@@ -4,6 +4,7 @@ import os
 
 app = Flask(__name__)
 
+# 获取 API token
 api = os.getenv("MAKERSUITE_API_TOKEN")
 if not api:
     raise ValueError("API token is not set in the environment variables.")
@@ -20,9 +21,11 @@ def index():
 def genAI():
     q = request.form.get("q")
     try:
+        # 调用 palm.chat，并将问题传递为一个列表
         response = palm.chat(**model, messages=[q])
-        if response.candidates:
-            r = response.candidates[0].content
+        # 检查候选内容并访问生成的文本
+        if 'candidates' in response and response['candidates']:
+            r = response['candidates'][0]['content']
         else:
             r = "Sorry, the AI did not return any response."
     except Exception as e:
