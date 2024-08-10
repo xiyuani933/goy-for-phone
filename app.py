@@ -21,7 +21,12 @@ def genAI():
     q = request.form.get("q")
     try:
         response = palm.chat(**model, messages=[q])
-        r = response['candidates'][0]['content']
+        
+        if response.candidates:
+            r = response.candidates[0].content
+        else:
+            r = "Sorry, no response from the AI."
+    
     except Exception as e:
         r = f"Sorry, something went wrong with the AI response: {str(e)}"
     
