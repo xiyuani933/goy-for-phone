@@ -1,11 +1,14 @@
 from flask import Flask, render_template,request
 import google.generativeai as palm
+import os
 
 app = Flask(__name__)
 
+api = os.getenv("MAKERSUITE_API_TOKEN")
+
 model = {"model": "models/chat-bison-001"}
 
-palm.configure(api_key="AIzaSyCaQcgKn95ZO6AR1t2PXzk9UydTkt4sWZQ")
+palm.configure(api_key=api)
 
 @app.route("/",methods=["GET","POST"])
 def index():
