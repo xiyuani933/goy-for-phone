@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mobile-Friendly GenAI App</title>
+    <title>genAI - Ask the AI</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Ask the AI</h1>
-        <form action="/genAI" method="post">
+        <h2 class="text-center">Welcome to genAI</h2>
+        <form action="/genAI" method="post" class="mt-4">
             <div class="form-group">
-                <label for="question">Your Question</label>
-                <input type="text" class="form-control" id="question" name="q" placeholder="Enter your question">
+                <label for="question"><h4>Question:</h4></label>
+                <input type="text" name="q" class="form-control" id="question" placeholder="Enter your question">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>
