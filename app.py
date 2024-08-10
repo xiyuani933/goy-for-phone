@@ -23,11 +23,16 @@ def genAI():
     try:
         # 调用 palm.chat，并将问题传递为一个列表
         response = palm.chat(**model, messages=[q])
-        # 检查候选内容并访问生成的文本
-        if 'candidates' in response and response['candidates']:
-            r = response['candidates'][0]['content']
+        
+        # 检查 response 是否有 candidates 属性
+        if hasattr(response, 'candidates') and response.candidates:
+            r = response.candidates[0]['content']
         else:
-            r = "Sorry, the AI did not return any response."
+            r = "Sorry, the AI did not return any valid response."
+    
+    except AttributeError as e:
+        r = f"Sorry, something went wrong with the AI response: {str(e)}"
+    
     except Exception as e:
         r = f"Sorry, something went wrong with the AI response: {str(e)}"
     
